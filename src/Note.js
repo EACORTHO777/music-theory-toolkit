@@ -12,4 +12,8 @@ export class Note {
 
     return new Note(newName + newOctave)
   }
+
+  get midiNumber() {
+    return (this.octave + 1) * 12 + NOTE_NAMES.indexOf(this.name)
+  }
 }
