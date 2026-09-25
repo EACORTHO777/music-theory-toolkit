@@ -1,0 +1,16 @@
+{
+  "name": "music-theory-toolkit",
+  "version": "1.0.0",
+  "description": "A music theory toolkit",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [],
+  "author": "Alexander Cancino",
+  "license": "ISC",
+  "type": "module"
+}
