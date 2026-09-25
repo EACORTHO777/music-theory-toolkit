@@ -18,3 +18,13 @@ test('transposes a note up by semitones', () => {
     assert.strictEqual(transposed.octave, 4)
   
 })
+
+test('transpose a note down by semitones', () => {
+  const note = new Note("C4")
+
+  const transposed = note.transpose(-2)
+
+  assert.strictEqual(transposed.name, "A#")
+  assert.strictEqual(transposed.octave, 3)
+})
+
