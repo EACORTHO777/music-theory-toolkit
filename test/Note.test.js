@@ -28,9 +28,15 @@ test('transpose a note down by semitones', () => {
   assert.strictEqual(transposed.octave, 3)
 })
 
-test('throw error if note valid note', () => {
+test('throw error if invalid note', () => {
 
   assert.throws(() => {
      new Note("H4")
+  })
+})
+
+test('throw error if invalid octave', () => {
+  assert.throws(() => {
+    new Note("Cx")
   })
 })
