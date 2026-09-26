@@ -3,6 +3,11 @@ const NOTE_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", 
 export class Note {
   constructor(noteString) {
     this.name = noteString.slice(0, -1)
+
+    if(!NOTE_NAMES.includes(this.name)) {
+      throw new Error("Invalid Note")
+    }
+
     this.octave = Number(noteString.slice(-1))
   }
   transpose(semitones) {
