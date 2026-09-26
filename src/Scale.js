@@ -7,6 +7,10 @@ export class Scale {
   constructor(rootNote, type) {
     this.rootNote = rootNote
     this.type = type
+
+    if(!SCALE_PATTERNS[this.type]) {
+      throw new Error ("Invalid Scale")
+    }
   }
   
   get notes() {

@@ -18,3 +18,9 @@ test('builds a minor scale', () => {
 
   assert.deepStrictEqual(noteNames, ["A", "B", "C", "D", "E", "F", "G"])
 })
+
+test('throw error if invalid scale', () => {
+  assert.throws(() => {
+    new Scale(new Note("C4"), "banana")
+  })
+})
