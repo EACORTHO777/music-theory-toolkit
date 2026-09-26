@@ -10,3 +10,9 @@ test('builds a major chord', () => {
 
   assert.deepStrictEqual(noteNames, ["C", "E", "G"])
 })
+
+test('throw new error if invalid chord', () => {
+  assert.throws(() => {
+    new Chord(new Note("C4"), ("banana"))
+  })
+})

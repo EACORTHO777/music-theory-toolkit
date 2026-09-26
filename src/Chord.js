@@ -6,7 +6,11 @@ const CHORD_PATTERNS ={
 export class Chord {
   constructor(rootNote, type) {
     this.rootNote = rootNote
-    this.type = type 
+    this.type = type
+
+    if(!CHORD_PATTERNS[this.type]) {
+      throw new Error ("Invalid Chord")
+    }
   }
 
   get notes() {
