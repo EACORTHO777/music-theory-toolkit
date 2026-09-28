@@ -62,6 +62,28 @@ interval.semitones // 4
 interval.name // "major third" 
 ```
 
-- Interval works upwards (C4 -> E4) and downwards (E4 -> C4). Semitones gets negative down. E4 -> C4 gives -4, although name still remains "major third".
+- Interval works upwards (C4 -> E4) and downwards (E4 -> C4). Semitones gets negative down. E4 -> C4 gives -4, although name still remains "major third"
 - Interval works if interval is in a higher octave (C4 -> D5) gives "major second" 
 
+### Scale
+
+- A combination of notes creates a scale
+
+```js
+const scale = new Scale(new Note("C4"), "major")
+scale.notes // [C, D, E, F, G, A, B] (Note objects)
+scale.contains(new Note ("E4")) // true
+scale.contains(new Note ("F#4")) // false
+scale.relative() // Scale: A minor 
+```
+- Scales in this module:
+  - `"major"`
+  - `"minor"`
+  - `"dorian"`
+  - `"phrygian"`
+  - `"lydian"`
+  - `"mixolydian"`
+  - `"locrian"`
+  - `"majorPentatonic"`
+  - `"minorPentatonic"`
+- Throws an error if invalid type and if relative() is something else other than major/minor (e.g. Dorian scale)
