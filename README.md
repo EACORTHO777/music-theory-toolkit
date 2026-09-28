@@ -52,5 +52,16 @@ note.frequency // 261.63
 - Tones that includes "b" (e.g Eb) translates to # (e.g D#)
 - Error will throw if the name or octave are invalid 
 
+### Interval
 
+- The distance between two tones
+
+```js
+const interval = new Interval(new Note("C4"), new Note("E4"))
+interval.semitones // 4
+interval.name // "major third" 
+```
+
+- Interval works upwards (C4 -> E4) and downwards (E4 -> C4). Semitones gets negative down. E4 -> C4 gives -4, although name still remains "major third".
+- Interval works if interval is in a higher octave (C4 -> D5) gives "major second" 
 
