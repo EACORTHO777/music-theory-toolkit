@@ -110,3 +110,17 @@ chord.relative() // Chord: A minor
   - `"minor7"`
   - `"dominant7"`
 - Throws an error if invalid type and if relative() is something else other than major/minor (e.g. diminished chord)
+
+## Testing
+
+-  To run test: 
+
+```
+npm test
+```
+
+- See [TEST_REPORT.md](TEST_REPORT.md) for full test report.
+
+## License 
+
+- [MIT license](LICENSE)
