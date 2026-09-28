@@ -23,4 +23,8 @@ export class Note {
   get midiNumber() {
     return (this.octave + 1) * 12 + NOTE_NAMES.indexOf(this.name)
   }
+
+  get frequency() {
+    return 440 * 2 ** ((this.midiNumber - 69) / 12)
+  }
 }

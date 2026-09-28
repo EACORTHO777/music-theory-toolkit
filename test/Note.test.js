@@ -40,3 +40,8 @@ test('throw error if invalid octave', () => {
     new Note("Cx")
   })
 })
+
+test('note frequencies', () => {
+  assert.strictEqual(new Note("A4").frequency, 440)
+  assert.strictEqual(new Note ("A5").frequency, 880)
+})
