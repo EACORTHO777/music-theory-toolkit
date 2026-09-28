@@ -1,8 +1,19 @@
 const NOTE_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 
+const FLAT_TO_SHARP = {
+  Db: "C#",
+  Eb: "D#",
+  Gb: "F#",
+  Ab: "G#",
+  Bb: "A#"
+}
+
 export class Note {
   constructor(noteString) {
     this.name = noteString.slice(0, -1)
+    if (FLAT_TO_SHARP[this.name]) {
+    this.name = FLAT_TO_SHARP[this.name]
+    }
     if(!NOTE_NAMES.includes(this.name)) {
       throw new Error("Invalid Note")
     }
