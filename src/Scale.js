@@ -34,4 +34,11 @@ export class Scale {
     }
     return false
   }
+
+  relative() {
+    if (this.type === "major") {
+      const relativeRoot = this.rootNote.transpose(-3)
+      return new Scale(relativeRoot, "minor")
+    }
+  }
 }

@@ -39,3 +39,12 @@ test('builds a dorian scale', () => {
 
   assert.deepStrictEqual(noteNames, ["D", "E", "F", "G", "A", "B", "C"])
 })
+
+test('builds a relative minor scale from a major scale', () => {
+  const scale = new Scale(new Note ("C4"), "major")
+
+  const relativeScale = scale.relative()
+
+  assert.strictEqual(relativeScale.rootNote.name, "A")
+  assert.strictEqual(relativeScale.type, "minor")
+})
