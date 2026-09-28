@@ -14,3 +14,9 @@ test('names in the interval', () => {
 
 assert.strictEqual(interval.name, "major third")
 })
+
+test('names a descending interval', () => {
+  const interval = new Interval(new Note ("E4"), new Note("C4"))
+
+assert.strictEqual(interval.name, "major third")
+})

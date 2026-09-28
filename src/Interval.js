@@ -24,6 +24,10 @@ export class Interval {
   }
 
   get name() {
-    return INTERVAL_NAMES[this.semitones]
+    let semitones = this.semitones
+    if(semitones < 0) {
+       semitones = -this.semitones
+    }
+    return INTERVAL_NAMES[semitones]
   }
 }
