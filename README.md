@@ -87,3 +87,26 @@ scale.relative() // Scale: A minor
   - `"majorPentatonic"`
   - `"minorPentatonic"`
 - Throws an error if invalid type and if relative() is something else other than major/minor (e.g. Dorian scale)
+
+### Chord
+
+- A combination of notes creates a chord
+
+```js
+const chord = new Chord(new Note("C4"), "major")
+chord.notes // [C4, E4, G4] (Note objects)
+chord.contains(new Note ("E4")) // true
+chord.contains(new Note ("D4")) // false
+chord.relative() // Chord: A minor 
+```
+- Chords in this module:
+  - `"major"`
+  - `"minor"`
+  - `"diminished"`
+  - `"augmented"`
+  - `"sus2"`
+  - `"sus4"`
+  - `"major7"`
+  - `"minor7"`
+  - `"dominant7"`
+- Throws an error if invalid type and if relative() is something else other than major/minor (e.g. diminished chord)
