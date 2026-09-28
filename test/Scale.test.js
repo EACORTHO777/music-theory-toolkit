@@ -31,3 +31,11 @@ test('tone is in the scale', () => {
   assert.strictEqual(scale.contains(new Note("E4")), true)
   assert.strictEqual(scale.contains(new Note("F#4")), false)
 })
+
+test('builds a dorian scale', () => {
+  const scale = new Scale(new Note("D4"), "dorian")
+
+  const noteNames = scale.notes.map(note => note.name)
+
+  assert.deepStrictEqual(noteNames, ["D", "E", "F", "G", "A", "B", "C"])
+})
