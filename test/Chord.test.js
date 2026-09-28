@@ -44,6 +44,6 @@ test('builds a relative major chord from a minor chord', () => {
 
 test('relative throws error for chords that are not major or minor', () => {
   assert.throws(() => {
-    new Chord(new Note("C4"), "dorian").relative()
+    new Chord(new Note("C4"), "diminished").relative()
   })
 })
