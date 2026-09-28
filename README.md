@@ -35,3 +35,22 @@ npm install github:EACORTHO777/music-theory-toolkit
 import { Note, Interval, Scale, Chord } from 'music-theory-toolkit'
 ```
 
+## Usage
+
+### Note
+
+- A note that either stands by itself, or builds a chord/scale
+
+```js
+const note = new Note("C4") 
+note.name // "C"
+note.octave // 4
+note.transpose(2) // Note D4
+note.midiNumber // 60
+note.frequency // 261.63
+``` 
+- Tones that includes "b" (e.g Eb) translates to # (e.g D#)
+- Error will throw if the name or octave are invalid 
+
+
+
