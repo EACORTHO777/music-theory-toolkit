@@ -11,6 +11,14 @@ test('builds a major chord', () => {
   assert.deepStrictEqual(noteNames, ["C", "E", "G"])
 })
 
+test('builds a major7 chord', () => {
+  const chord = new Chord(new Note("C4"), "major7")
+  
+  const noteNames = chord.notes.map(note => note.name)
+
+  assert.deepStrictEqual(noteNames, ["C", "E", "G", "B"])
+})
+
 test('throw new error if invalid chord', () => {
   assert.throws(() => {
     new Chord(new Note("C4"), ("banana"))
