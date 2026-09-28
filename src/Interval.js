@@ -27,6 +27,9 @@ export class Interval {
     let semitones = this.semitones
     if(semitones < 0) {
        semitones = -this.semitones
+    } 
+    if (semitones > 12) {
+      semitones = semitones % 12 
     }
     return INTERVAL_NAMES[semitones]
   }

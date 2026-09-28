@@ -20,3 +20,9 @@ test('names a descending interval', () => {
 
 assert.strictEqual(interval.name, "major third")
 })
+
+test('names a interval larger than an octave', () => {
+  const interval = new Interval(new Note ("C4"), new Note("D5"))
+
+  assert.strictEqual(interval.name, "major second")
+})
