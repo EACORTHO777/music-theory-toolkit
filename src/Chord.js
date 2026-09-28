@@ -27,4 +27,15 @@ export class Chord {
     }
     return false
   }
+
+  relative() {
+    if(this.type === "major") {
+      const relativeRoot = this.rootNote.transpose(-3)
+      return new Chord(relativeRoot, "minor")
+    } else if (this.type === "minor") {
+      const relativeRoot = this.rootNote.transpose(3)
+      return new Chord(relativeRoot, "major")
+    }
+    throw new Error ("Not a major or minor chord")
+  }
 }

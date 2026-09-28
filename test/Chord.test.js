@@ -23,3 +23,27 @@ test('checks if a note is in the chord', () => {
   assert.strictEqual(chord.contains(new Note("E4")), true)
   assert.strictEqual(chord.contains(new Note("D4")), false)
 })
+
+test('builds a relative minor chord from a major chord', () => {
+  const chord = new Chord(new Note ("C4"), "major")
+
+  const relativeChord = chord.relative()
+
+  assert.strictEqual(relativeChord.rootNote.name, "A")
+  assert.strictEqual(relativeChord.type, "minor")
+})
+
+test('builds a relative major chord from a minor chord', () => {
+  const chord = new Chord(new Note ("A4"), "minor")
+
+  const relativeChord = chord.relative()
+
+  assert.strictEqual(relativeChord.rootNote.name, "C")
+  assert.strictEqual(relativeChord.type, "major")
+})
+
+test('relative throws error for chords that are not major or minor', () => {
+  assert.throws(() => {
+    new Chord(new Note("C4"), "dorian").relative()
+  })
+})
