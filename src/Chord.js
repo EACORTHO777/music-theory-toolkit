@@ -18,4 +18,13 @@ export class Chord {
 
     return pattern.map(semitones => this.rootNote.transpose(semitones))
   }
+
+  contains(note) {
+    for (const chordNote of this.notes) {
+      if (chordNote.name === note.name) {
+        return true
+      }
+    }
+    return false
+  }
 }

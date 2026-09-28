@@ -16,3 +16,10 @@ test('throw new error if invalid chord', () => {
     new Chord(new Note("C4"), ("banana"))
   })
 })
+
+test('checks if a note is in the chord', () => {
+  const chord = new Chord(new Note("C4"), "major")
+
+  assert.strictEqual(chord.contains(new Note("E4")), true)
+  assert.strictEqual(chord.contains(new Note("D4")), false)
+})
