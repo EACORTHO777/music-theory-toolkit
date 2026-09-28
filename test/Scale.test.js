@@ -57,3 +57,9 @@ test('builds a relative major scale from a minor scale', () => {
   assert.strictEqual(relativeScale.rootNote.name, "C")
   assert.strictEqual(relativeScale.type, "major")
 })
+
+test('relative throws error for scales that are not major or minor', () => {
+  assert.throws(() => {
+    new Scale(new Note("C4"), "dorian").relative()
+  })
+})

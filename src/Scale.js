@@ -43,5 +43,6 @@ export class Scale {
         const relativeRoot = this.rootNote.transpose(3)
         return new Scale(relativeRoot, "major")
     }
+    throw new Error ("Not a major or minor scale")
   }
 }
