@@ -18,4 +18,13 @@ export class Scale {
 
     return pattern.map(semitones => this.rootNote.transpose(semitones))
   }
+
+  contains(note) {
+    for (const scaleNote of this.notes) {
+      if (scaleNote.name === note.name) {
+        return true
+      }
+    }
+    return false
+  }
 }

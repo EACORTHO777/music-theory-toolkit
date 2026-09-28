@@ -24,3 +24,10 @@ test('throw error if invalid scale', () => {
     new Scale(new Note("C4"), "banana")
   })
 })
+
+test('tone is in the scale', () => {
+  const scale = new Scale(new Note ("C4"), "major")
+
+  assert.strictEqual(scale.contains(new Note("E4")), true)
+  assert.strictEqual(scale.contains(new Note("F#4")), false)
+})
