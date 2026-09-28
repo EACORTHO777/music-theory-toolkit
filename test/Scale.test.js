@@ -48,3 +48,12 @@ test('builds a relative minor scale from a major scale', () => {
   assert.strictEqual(relativeScale.rootNote.name, "A")
   assert.strictEqual(relativeScale.type, "minor")
 })
+
+test('builds a relative major scale from a minor scale', () => {
+  const scale = new Scale(new Note ("A4"), "minor")
+
+  const relativeScale = scale.relative()
+
+  assert.strictEqual(relativeScale.rootNote.name, "C")
+  assert.strictEqual(relativeScale.type, "major")
+})
