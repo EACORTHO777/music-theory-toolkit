@@ -49,10 +49,10 @@ submitting):
 | `new Note()` throws an error if invalid octave                 |Automated unit test (node:test): called `new Note("Cx")` and checked that it `throws an error`                    |✅ Passed         |
 | `frequency` shows note frequency                   | Automated unit test (node:test): called `new Note("A4").frequency` and `new Note("A5").frequency` checked that it returns `440` and `880`                   | ✅ Passed         |
 | `new Note()` converts flat names to sharp names (e.g. Bb -> A#)                   | Automated unit test (node:test): called `new Note("Bb4").name` and `new Note("Eb4").name` checked that it returns `A#` and `D#`                   | ✅ Passed         |
-|                   |                    |         |
-|                   |                    |         |
-|                   |                    |         |
-|                   |                    |         |
+| `interval.semitones` counts semitones between two notes                   | Automated unit test (node:test): called `new Interval(new Note("C4"), new Note ("E4"))` and checked that `semitones` is `4`                   | ✅ Passed         |
+| `interval.name` returns the name of the interval                  | Automated unit test (node:test): called `new Interval(new Note("C4"), new Note ("E4"))` and checked that `interval.name` is `"major third"`                   | ✅ Passed         |
+| `interval.name` returns the name of the descending interval                  | Automated unit test (node:test): called `new Interval(new Note("E4"), new Note ("C4"))` and checked that `interval.name` is `"major third"`                   | ✅ Passed         |
+| `interval.name` names an interval larger than an octave                 | Automated unit test (node:test): called `new Interval(new Note("C4"), new Note ("D5"))` and checked that `interval.name` is `"major second"`                   | ✅ Passed         |
 |                   |                    |         |
 |                   |                    |         |
 |                   |                    |         |
