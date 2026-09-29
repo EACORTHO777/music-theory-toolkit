@@ -35,15 +35,37 @@ submitting):
 
 | What was tested                                                        | How it was tested                                                                                                       | Result                                                                       |
 | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| `Jpeg.load(path)` returns a `Picture` instance for a valid image file. | Automated unit test (Vitest): loaded `test-image.jpg` and checked that the return value had `getHeight()`/`getWidth()` methods. | ✅ Passed.                                                                    |
+| `new Note("C#4")` reads name and octave | Automated unit test (node:test): created a Note and checked that `name` is `"C#"` and `octave` is `4` | ✅ Passed                                                                    |
 | `Picture.getPixelAt(x, y)` with coordinates outside the image.         | Manual test via the Test-App's interface: entered a coordinate pair larger than the image's width/height and observed the output. | ❌ Didn't throw an error initially — fixed, now throws a clear exception. |
 
-**Your test results:**
+**My test results:**
 
 | What was tested | How it was tested | Result |
 | ---------------- | ------------------ | ------- |
+| `new Note("C#4")` reads name and octave |  Automated unit test (node:test): created a Note and checked that `name` is `"C#"` and `octave` is `4` | ✅ Passed        |
+| `note.transpose(2)` transposes a note up by semitones                 | Automated unit test (node:test): created `new Note("C#4")`, called `transpose(2)` and checked that name is `"D#"` and octave is `4`                  | ✅ Passed      |
+| `note.transpose(-2)` transposes a note down by semitones                  | Automated unit test (node:test): created `new Note("C4")`, called `transpose(-2)` and checked that name is `"A#"` and octave is `3`                   | ✅ Passed        |
+| `new Note()` throws an error if invalid note name                 |Automated unit test (node:test): called `new Note("H4")` and checked that it `throws an error`                    |✅ Passed         |
+| `new Note()` throws an error if invalid octave                 |Automated unit test (node:test): called `new Note("Cx")` and checked that it `throws an error`                    |✅ Passed         |
+| `frequency` shows note frequency                   | Automated unit test (node:test): called `new Note("A4").frequency` and `new Note("A5").frequency` checked that it returns `440` and `880`                   | ✅ Passed         |
+| `new Note()` converts flat names to sharp names (e.g. Bb -> A#)                   | Automated unit test (node:test): called `new Note("Bb4").name` and `new Note("Eb4").name` checked that it returns `A#` and `D#`                   | ✅ Passed         |
 |                   |                    |         |
 |                   |                    |         |
 |                   |                    |         |
 |                   |                    |         |
 |                   |                    |         |
+|                   |                    |         |
+|                   |                    |         |
+|                   |                    |         |
+|                   |                    |         |
+|                   |                    |         |
+|                   |                    |         |
+|                   |                    |         |
+|                   |                    |         |
+|                   |                    |         |
+|                   |                    |         |
+|                   |                    |         |
+|                   |                    |         |
+|                   |                    |         |
+|                   |                    |         |
+
