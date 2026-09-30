@@ -88,3 +88,9 @@ test('chords on a C4 majorPentatonic throws error', () => {
     new Scale(new Note("C4"), "majorPentatonic").chords
   })
 })
+
+test('returns D dorian string', () => {
+  new Scale(new Note("D4"), "dorian").toString()
+
+  assert.strictEqual(new Scale(new Note("D4"), "dorian").toString(), "D dorian")
+})

@@ -53,6 +53,10 @@ export class Scale {
     return new Scale(newRoot, this.type)
   }
 
+  toString() {
+    return this.rootNote.name + " " + this.type
+  }
+
   get chords() {
     const scaleNotes = this.notes
     if (scaleNotes.length !== 7) {
