@@ -52,3 +52,9 @@ test('return b notes to # notes', () => {
   assert.strictEqual(new Note("Bb4").name, "A#")
   assert.strictEqual(new Note("Eb4").name, "D#")
 })
+
+test('returns the note name and octave as a string', () => {
+  const note = new Note ("C#4")
+
+  assert.strictEqual(note.toString(), "C#4")
+})

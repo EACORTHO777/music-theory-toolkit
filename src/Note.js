@@ -38,4 +38,8 @@ export class Note {
   get frequency() {
     return 440 * 2 ** ((this.midiNumber - 69) / 12)
   }
+
+  toString() {
+    return this.name + this.octave
+  }
 }
