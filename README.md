@@ -17,6 +17,8 @@ A JavaScript library for developers who want to use music theory in their apps w
 - No sound input or output
 - No graphic design
 - Does not handle octaves over 9
+- Transpose whole scales and chords
+- Build the chords that belong to a scale
 
 ## Requirements
 
@@ -48,9 +50,13 @@ note.octave // 4
 note.transpose(2) // Note D4
 note.midiNumber // 60
 note.frequency // 261.63
+note.toString() // "C4"
+note.equals(new Note("C4")) // true
 ``` 
 - Tones that includes "b" (e.g Eb) translates to # (e.g D#)
-- Error will throw if the name or octave are invalid 
+- Error will throw if the name or octave are invalid
+- Flat and sharp versions of the same note are equal, e.g. `new Note("Bb4").equals(new Note("A#4"))` is `true`
+
 
 ### Interval
 
@@ -75,6 +81,9 @@ scale.notes // [C, D, E, F, G, A, B] (Note objects)
 scale.contains(new Note ("E4")) // true
 scale.contains(new Note ("F#4")) // false
 scale.relative() // Scale: A minor 
+scale.transpose(2) // Scale: D major
+scale.toString() // "C major"
+scale.chords // [C major, D minor, E minor, F major, G major, A minor, B diminished] (Chord objects)
 ```
 - Scales in this module:
   - `"major"`
@@ -87,6 +96,7 @@ scale.relative() // Scale: A minor
   - `"majorPentatonic"`
   - `"minorPentatonic"`
 - Throws an error if invalid type and if relative() is something else other than major/minor (e.g. Dorian scale)
+- `chords` only works for scales with 7 notes. Pentatonic scales throw an error.
 
 ### Chord
 
@@ -97,7 +107,9 @@ const chord = new Chord(new Note("C4"), "major")
 chord.notes // [C4, E4, G4] (Note objects)
 chord.contains(new Note ("E4")) // true
 chord.contains(new Note ("D4")) // false
-chord.relative() // Chord: A minor 
+chord.relative() // Chord: A minor
+chord.transpose(2) // Chord: D major
+chord.toString() // "C major" 
 ```
 - Chords in this module:
   - `"major"`
