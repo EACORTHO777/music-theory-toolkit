@@ -82,3 +82,9 @@ test('builds all chords in a major scale', () => {
   assert.deepStrictEqual(rootNames, ["C", "D", "E", "F", "G", "A", "B"])
   assert.deepStrictEqual(chordTypes, ["major", "minor", "minor", "major", "major", "minor", "diminished"])
 })
+
+test('chords on a C4 majorPentatonic throws error', () => {
+  assert.throws(() => {
+    new Scale(new Note("C4"), "majorPentatonic").chords
+  })
+})
