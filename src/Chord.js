@@ -45,4 +45,9 @@ export class Chord {
     }
     throw new Error ("Not a major or minor chord")
   }
+
+  transpose(semitones) {
+    const newRoot = this.rootNote.transpose(semitones)
+    return new Chord(newRoot, this.type)
+  }
 }

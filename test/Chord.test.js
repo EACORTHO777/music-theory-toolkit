@@ -55,3 +55,11 @@ test('relative throws error for chords that are not major or minor', () => {
     new Chord(new Note("C4"), "diminished").relative()
   })
 })
+
+test('returns a new Chord with transposed rootNote', () => {
+  const cMajor = new Chord(new Note("C4"), "major")
+  const dMajor = cMajor.transpose(2)
+
+  assert.strictEqual(dMajor.rootNote.name, "D")
+  assert.strictEqual(dMajor.type, "major")
+})
