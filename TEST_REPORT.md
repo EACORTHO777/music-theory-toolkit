@@ -16,7 +16,7 @@ the test run here.*
 
 Answer:
 
-The tests were applied by using node:test and by self written automated tests. There is one test file per class in the /test folder, 26 tests in total. 
+The tests were applied by using node:test and by self written automated tests. There is one test file per class in the /test folder, 34 tests in total. 
 
 How to run tests: 
 ```
@@ -39,6 +39,8 @@ The hardest part was a test for relative() on chords that passed for the wrong r
 | `new Note()` throws an error if invalid octave                 |Automated unit test (node:test): called `new Note("Cx")` and checked that it `throws an error`                    |✅ Passed         |
 | `frequency` shows note frequency                   | Automated unit test (node:test): called `new Note("A4").frequency` and `new Note("A5").frequency` checked that it returns `440` and `880`                   | ✅ Passed         |
 | `new Note()` converts flat names to sharp names (e.g. Bb -> A#)                   | Automated unit test (node:test): called `new Note("Bb4").name` and `new Note("Eb4").name` checked that it returns `A#` and `D#`                   | ✅ Passed         |
+| `note.toString()` returns the note as a string | Automated unit test (node:test): called `new Note("C#4").toString()` and checked that it returns `"C#4"` | ✅ Passed |
+| `note.equals()` checks if two notes are equal | Automated unit test (node:test): called `equals()` on C4/C4, C4/D4 and Bb4/A#4 and checked that it returns `true`, `false` and `true` | ✅ Passed |
 | `interval.semitones` counts semitones between two notes                   | Automated unit test (node:test): called `new Interval(new Note("C4"), new Note ("E4"))` and checked that `semitones` is `4`                   | ✅ Passed         |
 | `interval.name` returns the name of the interval                  | Automated unit test (node:test): called `new Interval(new Note("C4"), new Note ("E4"))` and checked that `interval.name` is `"major third"`                   | ✅ Passed         |
 | `interval.name` returns the name of the descending interval                  | Automated unit test (node:test): called `new Interval(new Note("E4"), new Note ("C4"))` and checked that `interval.name` is `"major third"`                   | ✅ Passed         |
@@ -51,6 +53,10 @@ The hardest part was a test for relative() on chords that passed for the wrong r
 | `scale.relative()` builds a relative minor scale from a major scale | Automated unit test (node:test): created `new Scale(new Note("C4"), "major")`, called `relative()` and checked that `rootNote.name` is `"A"` and `type` is `"minor"` | ✅ Passed |
 | `scale.relative()` builds a relative major scale from a minor scale | Automated unit test (node:test): created `new Scale(new Note("A4"), "minor")`, called `relative()` and checked that `rootNote.name` is `"C"` and `type` is `"major"` | ✅ Passed |
 | `scale.relative()` throws an error for scales that are not major or minor | Automated unit test (node:test): called `new Scale(new Note("C4"), "dorian").relative()` and checked that it throws an error | ✅ Passed |
+| `scale.transpose()` transposes a whole scale | Automated unit test (node:test): created `new Scale(new Note("C4"), "major")`, called `transpose(2)` and checked that `rootNote.name` is `"D"` and `type` is `"major"` | ✅ Passed |
+| `scale.chords` builds all chords in a major scale | Automated unit test (node:test): created `new Scale(new Note("C4"), "major")` and checked that the root names of `chords` are `"C, D, E, F, G, A, B"` and the types are `"major, minor, minor, major, major, minor, diminished"` | ✅ Passed |
+| `scale.chords` throws an error for scales without 7 notes | Automated unit test (node:test): called `new Scale(new Note("C4"), "majorPentatonic").chords` and checked that it throws an error | ✅ Passed |
+| `scale.toString()` returns the scale as a string | Automated unit test (node:test): called `new Scale(new Note("D4"), "dorian").toString()` and checked that it returns `"D dorian"` | ✅ Passed |
 | `chord.notes` builds a major chord | Automated unit test (node:test): called `new Chord(new Note("C4"), "major")` and checked that `notes` is `"C, E, G"` | ✅ Passed |
 | `chord.notes` builds a major7 chord | Automated unit test (node:test): called `new Chord(new Note("C4"), "major7")` and checked that `notes` is `"C, E, G, B"` | ✅ Passed |
 | `new Chord()` throws an error if invalid chord | Automated unit test (node:test): called `new Chord(new Note("C4"), "banana")` and checked that it throws an error | ✅ Passed |
@@ -58,3 +64,5 @@ The hardest part was a test for relative() on chords that passed for the wrong r
 | `chord.relative()` builds a relative minor chord from a major chord | Automated unit test (node:test): created `new Chord(new Note("C4"), "major")`, called `relative()` and checked that `rootNote.name` is `"A"` and `type` is `"minor"` | ✅ Passed |
 | `chord.relative()` builds a relative major chord from a minor chord | Automated unit test (node:test): created `new Chord(new Note("A4"), "minor")`, called `relative()` and checked that `rootNote.name` is `"C"` and `type` is `"major"` | ✅ Passed |
 | `chord.relative()` throws an error for chords that are not major or minor | Automated unit test (node:test): called `new Chord(new Note("C4"), "diminished").relative()` and checked that it throws an error | ✅ Passed |
+| `chord.transpose()` transposes a whole chord | Automated unit test (node:test): created `new Chord(new Note("C4"), "major")`, called `transpose(2)` and checked that `rootNote.name` is `"D"` and `type` is `"major"` | ✅ Passed |
+| `chord.toString()` returns the chord as a string | Automated unit test (node:test): called `new Chord(new Note("C4"), "minor").toString()` and checked that it returns `"C minor"` | ✅ Passed |
