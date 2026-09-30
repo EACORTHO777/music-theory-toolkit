@@ -63,3 +63,9 @@ test('returns a new Chord with transposed rootNote', () => {
   assert.strictEqual(dMajor.rootNote.name, "D")
   assert.strictEqual(dMajor.type, "major")
 })
+
+test('returns C minor chord', () => {
+  new Chord(new Note("C4"), "minor").toString()
+
+  assert.strictEqual(new Chord(new Note("C4"), "minor").toString(), "C minor")
+})

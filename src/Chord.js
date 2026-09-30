@@ -50,4 +50,8 @@ export class Chord {
     const newRoot = this.rootNote.transpose(semitones)
     return new Chord(newRoot, this.type)
   }
+
+  toString() {
+    return this.rootNote.name + " " + this.type
+  }
 }
