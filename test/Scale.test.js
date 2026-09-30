@@ -63,3 +63,11 @@ test('relative throws error for scales that are not major or minor', () => {
     new Scale(new Note("C4"), "dorian").relative()
   })
 })
+
+test('returns a new Scale with transposed rootNote', () => {
+  const cMajor = new Scale(new Note("C4"), "major")
+  const dMajor = cMajor.transpose(2)
+
+  assert.strictEqual(dMajor.rootNote.name, "D")
+  assert.strictEqual(dMajor.type, "major")
+})

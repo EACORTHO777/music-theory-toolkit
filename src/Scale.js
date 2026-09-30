@@ -45,4 +45,9 @@ export class Scale {
     }
     throw new Error ("Not a major or minor scale")
   }
+
+  transpose(semitones) {
+    const newRoot = this.rootNote.transpose(semitones)
+    return new Scale(newRoot, this.type)
+  }
 }
