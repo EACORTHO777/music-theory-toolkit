@@ -42,4 +42,8 @@ export class Note {
   toString() {
     return this.name + this.octave
   }
+
+  equals(otherNote) {
+    return this.name === otherNote.name && this.octave === otherNote.octave
+  }
 }
