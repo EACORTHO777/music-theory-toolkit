@@ -1,3 +1,5 @@
+import { Chord } from './Chord.js'
+
 const SCALE_PATTERNS = {
   major: [0, 2, 4, 5, 7, 9, 11],
   minor: [0, 2, 3, 5, 7, 8, 10],
@@ -49,5 +51,38 @@ export class Scale {
   transpose(semitones) {
     const newRoot = this.rootNote.transpose(semitones)
     return new Scale(newRoot, this.type)
+  }
+
+  get chords() {
+    const scaleNotes = this.notes
+    if (scaleNotes.length !== 7) {
+      throw new Error ("Chords can only be generated for 7-note scales")
+    }
+    const chords = []
+    for (let i = 0; i < scaleNotes.length; i++) {
+      const root = scaleNotes[i]
+      const third = scaleNotes[(i + 2) % 7]
+      const fifth = scaleNotes[(i + 4) % 7]
+
+      const type = this.#chordType(this.#distance(root, third), this.#distance(root, fifth))
+      chords.push(new Chord(root, type))
+    }
+    return chords
+  }
+
+  #chordType(thirdDistance, fifthDistance) {
+    if (thirdDistance === 4 && fifthDistance === 7) {
+      return "major"
+    } else if (thirdDistance === 3 && fifthDistance === 7) {
+      return "minor"
+    } else if (thirdDistance === 3 && fifthDistance === 6) {
+      return "diminished"
+    }
+    throw new Error ("Unknown chord type")
+  }
+
+  #distance(fromNote, toNote) {
+    const rawDistance = toNote.midiNumber - fromNote.midiNumber
+    return (rawDistance % 12 + 12) % 12
   }
 }

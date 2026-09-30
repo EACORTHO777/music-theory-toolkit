@@ -71,3 +71,14 @@ test('returns a new Scale with transposed rootNote', () => {
   assert.strictEqual(dMajor.rootNote.name, "D")
   assert.strictEqual(dMajor.type, "major")
 })
+
+test('builds all chords in a major scale', () => {
+  const cMajor = new Scale(new Note("C4"), "major")
+  const scaleChords = cMajor.chords
+
+  const rootNames = scaleChords.map(chord => chord.rootNote.name)
+  const chordTypes = scaleChords.map(chord => chord.type)
+
+  assert.deepStrictEqual(rootNames, ["C", "D", "E", "F", "G", "A", "B"])
+  assert.deepStrictEqual(chordTypes, ["major", "minor", "minor", "major", "major", "minor", "diminished"])
+})
