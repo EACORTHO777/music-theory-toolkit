@@ -20,6 +20,8 @@ const FLAT_TO_SHARP = {
  * Represents a single musical note with a name and an octave, e.g. C#4.
  */
 export class Note {
+  #name
+  #octave
   /**
    * Creates a note from a string such as "C4", "F#3" or "Bb5".
    * Flat names are converted to their sharp equivalents (Bb → A#).
@@ -28,18 +30,26 @@ export class Note {
    * @throws {Error} If the note name or the octave is invalid.
    */
   constructor(noteString) {
-    this.name = noteString.slice(0, -1)
-    if (FLAT_TO_SHARP[this.name]) {
-      this.name = FLAT_TO_SHARP[this.name]
-    }
-    if (!NOTE_NAMES.includes(this.name)) {
-      throw new Error('Invalid Note')
-    }
+    this.#name = this.#parseName(noteString)
+    this.#octave = this.#parseOctave(noteString)
+  }
 
-    this.octave = Number(noteString.slice(-1))
-    if (Number.isNaN(this.octave)) {
-      throw new Error('Invalid Octave')
-    }
+  /**
+   * The note name, always written with a sharp if it has one, e.g. "C#".
+   *
+   * @type {string}
+   */
+  get name() {
+    return this.#name
+  }
+
+  /**
+   * The octave of the note, e.g. 4.
+   *
+   * @type {number}
+   */
+  get octave() {
+    return this.#octave
   }
   /**
    * Returns a new note moved up or down by a number of semitones.
@@ -92,5 +102,38 @@ export class Note {
    */
   equals(otherNote) {
     return this.name === otherNote.name && this.octave === otherNote.octave
+  }
+
+  /**
+   * Reads the note name from a note string and converts flats to sharps.
+   *
+   * @param {string} noteString - The note string, e.g. "Bb4".
+   * @returns {string} The note name, e.g. "A#".
+   * @throws {Error} If the note name is invalid.
+   */
+  #parseName(noteString) {
+    const writtenName = noteString.slice(0, -1)
+    const name = FLAT_TO_SHARP[writtenName] ?? writtenName
+
+    if (!NOTE_NAMES.includes(name)) {
+      throw new Error('Invalid Note')
+    }
+    return name
+  }
+
+  /**
+   * Reads the octave from a note string.
+   *
+   * @param {string} noteString - The note string, e.g. "Bb4".
+   * @returns {number} The octave, e.g. 4.
+   * @throws {Error} If the octave is not a number.
+   */
+  #parseOctave(noteString) {
+    const octave = Number(noteString.slice(-1))
+
+    if (Number.isNaN(octave)) {
+      throw new Error('Invalid Octave')
+    }
+    return octave
   }
 }

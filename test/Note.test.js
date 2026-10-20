@@ -62,3 +62,14 @@ test('checks if two notes are equal', () => {
   assert.strictEqual(new Note('C4').equals(new Note('D4')), false)
   assert.strictEqual(new Note('Bb4').equals(new Note('A#4')), true)
 })
+
+test('name and octave cannot be changed from outside', () => {
+  const note = new Note('C4')
+
+  assert.throws(() => {
+    note.name = 'D'
+  }, TypeError)
+  assert.throws(() => {
+    note.octave = 5
+  }, TypeError)
+})
