@@ -43,7 +43,7 @@ test('builds a dorian scale', () => {
 test('builds a relative minor scale from a major scale', () => {
   const scale = new Scale(new Note('C4'), 'major')
 
-  const relativeScale = scale.relative()
+  const relativeScale = scale.toRelative()
 
   assert.strictEqual(relativeScale.rootNote.name, 'A')
   assert.strictEqual(relativeScale.type, 'minor')
@@ -52,7 +52,7 @@ test('builds a relative minor scale from a major scale', () => {
 test('builds a relative major scale from a minor scale', () => {
   const scale = new Scale(new Note('A4'), 'minor')
 
-  const relativeScale = scale.relative()
+  const relativeScale = scale.toRelative()
 
   assert.strictEqual(relativeScale.rootNote.name, 'C')
   assert.strictEqual(relativeScale.type, 'major')
@@ -60,7 +60,7 @@ test('builds a relative major scale from a minor scale', () => {
 
 test('relative throws error for scales that are not major or minor', () => {
   assert.throws(() => {
-    new Scale(new Note('C4'), 'dorian').relative()
+    new Scale(new Note('C4'), 'dorian').toRelative()
   })
 })
 
@@ -93,4 +93,10 @@ test('returns D dorian string', () => {
   new Scale(new Note('D4'), 'dorian').toString()
 
   assert.strictEqual(new Scale(new Note('D4'), 'dorian').toString(), 'D dorian')
+})
+
+test('deprecated relative() gives the same scale as toRelative()', () => {
+  const scale = new Scale(new Note('C4'), 'major')
+
+  assert.strictEqual(scale.relative().toString(), scale.toRelative().toString())
 })

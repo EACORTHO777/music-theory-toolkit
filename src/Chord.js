@@ -67,7 +67,7 @@ export class Chord {
    * @returns {Chord} A new relative chord.
    * @throws {Error} If the chord is neither major nor minor.
    */
-  relative() {
+  toRelative() {
     if (this.type === 'major') {
       const relativeRoot = this.rootNote.transpose(-3)
       return new Chord(relativeRoot, 'minor')
@@ -76,6 +76,17 @@ export class Chord {
       return new Chord(relativeRoot, 'major')
     }
     throw new Error('Not a major or minor chord')
+  }
+
+  /**
+   * Returns the relative chord.
+   *
+   * @deprecated Use toRelative() instead. Kept so that existing code keeps working.
+   * @returns {Chord} A new relative chord.
+   * @throws {Error} If the chord is neither major nor minor.
+   */
+  relative() {
+    return this.toRelative()
   }
 
   /**

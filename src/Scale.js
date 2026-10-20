@@ -69,7 +69,7 @@ export class Scale {
    * @returns {Scale} A new relative scale.
    * @throws {Error} If the scale is neither major nor minor.
    */
-  relative() {
+  toRelative() {
     if (this.type === 'major') {
       const relativeRoot = this.rootNote.transpose(-3)
       return new Scale(relativeRoot, 'minor')
@@ -78,6 +78,17 @@ export class Scale {
       return new Scale(relativeRoot, 'major')
     }
     throw new Error('Not a major or minor scale')
+  }
+
+  /**
+   * Returns the relative scale.
+   *
+   * @deprecated Use toRelative() instead. Kept so that existing code keeps working.
+   * @returns {Scale} A new relative scale.
+   * @throws {Error} If the scale is neither major nor minor.
+   */
+  relative() {
+    return this.toRelative()
   }
 
   /**

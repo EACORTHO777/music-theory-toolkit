@@ -35,7 +35,7 @@ test('checks if a note is in the chord', () => {
 test('builds a relative minor chord from a major chord', () => {
   const chord = new Chord(new Note('C4'), 'major')
 
-  const relativeChord = chord.relative()
+  const relativeChord = chord.toRelative()
 
   assert.strictEqual(relativeChord.rootNote.name, 'A')
   assert.strictEqual(relativeChord.type, 'minor')
@@ -44,7 +44,7 @@ test('builds a relative minor chord from a major chord', () => {
 test('builds a relative major chord from a minor chord', () => {
   const chord = new Chord(new Note('A4'), 'minor')
 
-  const relativeChord = chord.relative()
+  const relativeChord = chord.toRelative()
 
   assert.strictEqual(relativeChord.rootNote.name, 'C')
   assert.strictEqual(relativeChord.type, 'major')
@@ -52,7 +52,7 @@ test('builds a relative major chord from a minor chord', () => {
 
 test('relative throws error for chords that are not major or minor', () => {
   assert.throws(() => {
-    new Chord(new Note('C4'), 'diminished').relative()
+    new Chord(new Note('C4'), 'diminished').toRelative()
   })
 })
 
@@ -68,4 +68,10 @@ test('returns C minor chord', () => {
   new Chord(new Note('C4'), 'minor').toString()
 
   assert.strictEqual(new Chord(new Note('C4'), 'minor').toString(), 'C minor')
+})
+
+test('deprecated relative() gives the same chord as toRelative()', () => {
+  const chord = new Chord(new Note('C4'), 'major')
+
+  assert.strictEqual(chord.relative().toString(), chord.toRelative().toString())
 })
