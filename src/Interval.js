@@ -49,13 +49,17 @@ export class Interval {
    * @type {string}
    */
   get name() {
-    let semitones = this.semitones
-    if (semitones < 0) {
-      semitones = -this.semitones
-    }
-    if (semitones > 12) {
-      semitones = semitones % 12
-    }
-    return INTERVAL_NAMES[semitones]
+    return INTERVAL_NAMES[this.#simpleSemitones()]
+  }
+
+  /**
+   * The size of the interval within one octave, always positive (C4 -> D5 gives 2)
+   *
+   * @returns {number} The number of semitones, between 0 and 12.
+   */
+  #simpleSemitones() {
+    const distance = Math.abs(this.semitones)
+
+    return distance > 12 ? distance % 12 : distance
   }
 }
