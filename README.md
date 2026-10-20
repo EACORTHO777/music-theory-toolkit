@@ -17,8 +17,6 @@ A JavaScript library for developers who want to use music theory in their apps w
 - No sound input or output
 - No graphic design
 - Does not handle octaves over 9
-- Transpose whole scales and chords
-- Build the chords that belong to a scale
 
 ## Requirements
 
@@ -51,7 +49,7 @@ note.name // "C"
 note.octave // 4
 note.transpose(2) // Note D4
 note.midiNumber // 60
-note.frequency // 261.63
+note.frequency // 261.6255653005986
 note.toString() // "C4"
 note.equals(new Note('C4')) // true
 ```
@@ -82,7 +80,7 @@ const scale = new Scale(new Note('C4'), 'major')
 scale.notes // [C, D, E, F, G, A, B] (Note objects)
 scale.contains(new Note('E4')) // true
 scale.contains(new Note('F#4')) // false
-scale.relative() // Scale: A minor
+scale.toRelative() // Scale: A minor
 scale.transpose(2) // Scale: D major
 scale.toString() // "C major"
 scale.chords // [C major, D minor, E minor, F major, G major, A minor, B diminished] (Chord objects)
@@ -98,7 +96,7 @@ scale.chords // [C major, D minor, E minor, F major, G major, A minor, B diminis
   - `"locrian"`
   - `"majorPentatonic"`
   - `"minorPentatonic"`
-- Throws an error if invalid type and if relative() is something else other than major/minor (e.g. Dorian scale)
+- Throws an error if invalid type and if toRelative() is something else other than major/minor (e.g. Dorian scale)
 - `chords` only works for scales with 7 notes. Pentatonic scales throw an error.
 
 ### Chord
@@ -110,7 +108,7 @@ const chord = new Chord(new Note('C4'), 'major')
 chord.notes // [C4, E4, G4] (Note objects)
 chord.contains(new Note('E4')) // true
 chord.contains(new Note('D4')) // false
-chord.relative() // Chord: A minor
+chord.toRelative() // Chord: A minor
 chord.transpose(2) // Chord: D major
 chord.toString() // "C major"
 ```
@@ -125,7 +123,11 @@ chord.toString() // "C major"
   - `"major7"`
   - `"minor7"`
   - `"dominant7"`
-- Throws an error if invalid type and if relative() is something else other than major/minor (e.g. diminished chord)
+- Throws an error if invalid type and if toRelative() is something else other than major/minor (e.g. diminished chord)
+
+## Deprecated
+
+- `relative()` on `Scale` and `Chord` is deprecated. Use `toRelative()` instead. The old name still works, so existing code does not break.
 
 ## Testing
 
