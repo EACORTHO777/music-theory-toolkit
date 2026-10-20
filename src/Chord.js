@@ -1,7 +1,7 @@
 /**
  * The notes of each chord type, as semitone distances from the root note.
  */
-const CHORD_PATTERNS ={
+const CHORD_PATTERNS = {
   major: [0, 4, 7],
   minor: [0, 3, 7],
   diminished: [0, 3, 6],
@@ -10,7 +10,7 @@ const CHORD_PATTERNS ={
   sus4: [0, 5, 7],
   major7: [0, 4, 7, 11],
   minor7: [0, 3, 7, 10],
-  dominant7: [0, 4, 7, 10]
+  dominant7: [0, 4, 7, 10],
 }
 
 /**
@@ -28,8 +28,8 @@ export class Chord {
     this.rootNote = rootNote
     this.type = type
 
-    if(!CHORD_PATTERNS[this.type]) {
-      throw new Error ("Invalid Chord")
+    if (!CHORD_PATTERNS[this.type]) {
+      throw new Error('Invalid Chord')
     }
   }
 
@@ -41,7 +41,7 @@ export class Chord {
   get notes() {
     const pattern = CHORD_PATTERNS[this.type]
 
-    return pattern.map(semitones => this.rootNote.transpose(semitones))
+    return pattern.map((semitones) => this.rootNote.transpose(semitones))
   }
 
   /**
@@ -68,14 +68,14 @@ export class Chord {
    * @throws {Error} If the chord is neither major nor minor.
    */
   relative() {
-    if(this.type === "major") {
+    if (this.type === 'major') {
       const relativeRoot = this.rootNote.transpose(-3)
-      return new Chord(relativeRoot, "minor")
-    } else if (this.type === "minor") {
+      return new Chord(relativeRoot, 'minor')
+    } else if (this.type === 'minor') {
       const relativeRoot = this.rootNote.transpose(3)
-      return new Chord(relativeRoot, "major")
+      return new Chord(relativeRoot, 'major')
     }
-    throw new Error ("Not a major or minor chord")
+    throw new Error('Not a major or minor chord')
   }
 
   /**
@@ -95,6 +95,6 @@ export class Chord {
    * @returns {string} The root note name followed by the chord type.
    */
   toString() {
-    return this.rootNote.name + " " + this.type
+    return this.rootNote.name + ' ' + this.type
   }
 }

@@ -2,19 +2,19 @@
  * Interval names indexed by their size in semitones (0 = unison ... 12 = octave).
  */
 const INTERVAL_NAMES = [
-  "unison",
-  "minor second",
-  "major second",
-  "minor third",
-  "major third",
-  "perfect fourth",
-  "tritone",
-  "perfect fifth",
-  "minor sixth",
-  "major sixth",
-  "minor seventh",
-  "major seventh",
-  "octave"
+  'unison',
+  'minor second',
+  'major second',
+  'minor third',
+  'major third',
+  'perfect fourth',
+  'tritone',
+  'perfect fifth',
+  'minor sixth',
+  'major sixth',
+  'minor seventh',
+  'major seventh',
+  'octave',
 ]
 /**
  * Represents the distance between two notes.
@@ -50,8 +50,8 @@ export class Interval {
    */
   get name() {
     let semitones = this.semitones
-    if(semitones < 0) {
-       semitones = -this.semitones
+    if (semitones < 0) {
+      semitones = -this.semitones
     }
     if (semitones > 12) {
       semitones = semitones % 12

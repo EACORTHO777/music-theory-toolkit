@@ -4,25 +4,25 @@ import { Note } from '../src/Note.js'
 import { Interval } from '../src/Interval.js'
 
 test('counts semitones between two notes', () => {
-  const interval = new Interval(new Note("C4"), new Note ("E4"))
+  const interval = new Interval(new Note('C4'), new Note('E4'))
 
   assert.strictEqual(interval.semitones, 4)
 })
 
 test('names in the interval', () => {
-  const interval = new Interval(new Note ("C4"), new Note("E4"))
+  const interval = new Interval(new Note('C4'), new Note('E4'))
 
-assert.strictEqual(interval.name, "major third")
+  assert.strictEqual(interval.name, 'major third')
 })
 
 test('names a descending interval', () => {
-  const interval = new Interval(new Note ("E4"), new Note("C4"))
+  const interval = new Interval(new Note('E4'), new Note('C4'))
 
-assert.strictEqual(interval.name, "major third")
+  assert.strictEqual(interval.name, 'major third')
 })
 
 test('names an interval larger than an octave', () => {
-  const interval = new Interval(new Note ("C4"), new Note("D5"))
+  const interval = new Interval(new Note('C4'), new Note('D5'))
 
-  assert.strictEqual(interval.name, "major second")
+  assert.strictEqual(interval.name, 'major second')
 })

@@ -12,7 +12,7 @@ const SCALE_PATTERNS = {
   mixolydian: [0, 2, 4, 5, 7, 9, 10],
   locrian: [0, 1, 3, 5, 6, 8, 10],
   majorPentatonic: [0, 2, 4, 7, 9],
-  minorPentatonic: [0, 3, 5, 7, 10]
+  minorPentatonic: [0, 3, 5, 7, 10],
 }
 
 /**
@@ -30,8 +30,8 @@ export class Scale {
     this.rootNote = rootNote
     this.type = type
 
-    if(!SCALE_PATTERNS[this.type]) {
-      throw new Error ("Invalid Scale")
+    if (!SCALE_PATTERNS[this.type]) {
+      throw new Error('Invalid Scale')
     }
   }
 
@@ -43,7 +43,7 @@ export class Scale {
   get notes() {
     const pattern = SCALE_PATTERNS[this.type]
 
-    return pattern.map(semitones => this.rootNote.transpose(semitones))
+    return pattern.map((semitones) => this.rootNote.transpose(semitones))
   }
 
   /**
@@ -70,14 +70,14 @@ export class Scale {
    * @throws {Error} If the scale is neither major nor minor.
    */
   relative() {
-    if (this.type === "major") {
+    if (this.type === 'major') {
       const relativeRoot = this.rootNote.transpose(-3)
-      return new Scale(relativeRoot, "minor")
-    } else if (this.type === "minor") {
-        const relativeRoot = this.rootNote.transpose(3)
-        return new Scale(relativeRoot, "major")
+      return new Scale(relativeRoot, 'minor')
+    } else if (this.type === 'minor') {
+      const relativeRoot = this.rootNote.transpose(3)
+      return new Scale(relativeRoot, 'major')
     }
-    throw new Error ("Not a major or minor scale")
+    throw new Error('Not a major or minor scale')
   }
 
   /**
@@ -97,7 +97,7 @@ export class Scale {
    * @returns {string} The root note name followed by the scale type.
    */
   toString() {
-    return this.rootNote.name + " " + this.type
+    return this.rootNote.name + ' ' + this.type
   }
 
   /**
@@ -111,7 +111,7 @@ export class Scale {
   get chords() {
     const scaleNotes = this.notes
     if (scaleNotes.length !== 7) {
-      throw new Error ("Chords can only be generated for 7-note scales")
+      throw new Error('Chords can only be generated for 7-note scales')
     }
     const chords = []
     for (let i = 0; i < scaleNotes.length; i++) {
@@ -136,13 +136,13 @@ export class Scale {
    */
   #chordType(thirdDistance, fifthDistance) {
     if (thirdDistance === 4 && fifthDistance === 7) {
-      return "major"
+      return 'major'
     } else if (thirdDistance === 3 && fifthDistance === 7) {
-      return "minor"
+      return 'minor'
     } else if (thirdDistance === 3 && fifthDistance === 6) {
-      return "diminished"
+      return 'diminished'
     }
-    throw new Error ("Unknown chord type")
+    throw new Error('Unknown chord type')
   }
 
   /**
@@ -154,6 +154,6 @@ export class Scale {
    */
   #distance(fromNote, toNote) {
     const rawDistance = toNote.midiNumber - fromNote.midiNumber
-    return (rawDistance % 12 + 12) % 12
+    return ((rawDistance % 12) + 12) % 12
   }
 }

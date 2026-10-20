@@ -2,18 +2,18 @@
  * The twelve note names of the chromatic scale, in ascending order from C.
  * A note's position in this list is its pitch class (C = 0, C# = 1 ... B = 11).
  */
-const NOTE_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 
 /**
  * Maps flat note names to their enharmonic sharp equivalents, so that
  * every note is stored with a name from NOTE_NAMES.
  */
 const FLAT_TO_SHARP = {
-  Db: "C#",
-  Eb: "D#",
-  Gb: "F#",
-  Ab: "G#",
-  Bb: "A#"
+  Db: 'C#',
+  Eb: 'D#',
+  Gb: 'F#',
+  Ab: 'G#',
+  Bb: 'A#',
 }
 
 /**
@@ -30,15 +30,15 @@ export class Note {
   constructor(noteString) {
     this.name = noteString.slice(0, -1)
     if (FLAT_TO_SHARP[this.name]) {
-    this.name = FLAT_TO_SHARP[this.name]
+      this.name = FLAT_TO_SHARP[this.name]
     }
-    if(!NOTE_NAMES.includes(this.name)) {
-      throw new Error("Invalid Note")
+    if (!NOTE_NAMES.includes(this.name)) {
+      throw new Error('Invalid Note')
     }
 
     this.octave = Number(noteString.slice(-1))
-    if(Number.isNaN(this.octave)) {
-      throw new Error("Invalid Octave")
+    if (Number.isNaN(this.octave)) {
+      throw new Error('Invalid Octave')
     }
   }
   /**
@@ -50,7 +50,7 @@ export class Note {
   transpose(semitones) {
     const position = NOTE_NAMES.indexOf(this.name) + semitones
     // Wraps the position into 0–11, also for negative values.
-    const newName = NOTE_NAMES[(position % 12 + 12) % 12]
+    const newName = NOTE_NAMES[((position % 12) + 12) % 12]
     const newOctave = this.octave + Math.floor(position / 12)
 
     return new Note(newName + newOctave)
